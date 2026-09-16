@@ -18,6 +18,10 @@
 
   /* ── 디자인 토큰 (450×60) ───────────────── */
   :root {
+    color-scheme: light;    /* 입력창·커서가 다크로 뒤집히지 않게 */
+
+    --c-page-bg: transparent;  /* iframe 뒷바탕 (다크모드에서만 바뀜) */
+
     --bar-h:        60px;   /* 바 전체 높이 */
     --bar-radius:   10px;
     --bar-pad-x:     8px;   /* 좌우 안쪽 여백 */
@@ -40,14 +44,12 @@
 
   /* ── 다크모드 ────────────────────────────────────────────────────
      브라우저/OS 설정을 따라갑니다. 노션 테마는 감지하지 못합니다.
-     항상 어둡게 고정하고 싶으면, 아래 블록의 값들을 :root 안으로
-     그대로 옮겨 붙이고 이 @media 블록은 지우세요.               */
+     바 자체는 항상 흰색(Figma 원본)으로 두고, 뒷바탕과 그림자만
+     어두운 배경에 맞춰 바꿉니다.                                */
   @media (prefers-color-scheme: dark) {
     :root {
-      --c-bar-bg:     #2F3437;
-      --c-text:       #E6E6E5;
-      --c-placeholder:#A3AEB9;
-      --c-shadow:     rgba(0, 0, 0, 0.35);
+      --c-page-bg:    #191919;            /* 노션 다크 페이지 배경 */
+      --c-shadow:     rgba(0, 0, 0, 0.45);/* 어두운 배경에선 그림자를 좀 더 진하게 */
       --c-ring:       rgba(212, 179, 165, 0.45);
       --c-focus:      #D4B3A5;
     }
@@ -58,7 +60,7 @@
   html, body {
     margin: 0;
     padding: 0;
-    background: transparent;   /* 노션 페이지 배경이 비쳐 보이도록 */
+    background: var(--c-page-bg);   /* 라이트: 투명(노션 배경이 비침) / 다크: #191919 */
   }
 
   body {
